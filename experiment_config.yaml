@@ -1,0 +1,35 @@
+contract_version: "1.0"
+dataset:
+  name: wikipedia
+  url: https://snap.stanford.edu/jodie/wikipedia.csv
+  recent_window_seconds: 604800.0
+  validation_quantile: 0.70
+  test_quantile: 0.85
+model:
+  use_memory: true
+  embedding_module: graph_attention
+  message_function: identity
+  memory_updater: gru
+  aggregator: last
+  memory_update_at_end: false
+  n_neighbors: 10
+  n_heads: 2
+  n_layers: 1
+  dropout: 0.1
+  learning_rate: 0.0001
+  batch_size: 200
+  backprop_every: 1
+  node_dimension: 172
+  time_dimension: 172
+  memory_dimension: 172
+  message_dimension: 100
+  patience: 5
+  uniform_neighbors: false
+  seed: 0
+modes:
+  fast:
+    epochs: 2
+    max_interactions: 20000
+  reference:
+    epochs: 50
+    max_interactions: null
